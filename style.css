@@ -1,0 +1,142 @@
+/* =====================================================================
+   Who Is He? · 디자인 규칙 (매직 패밀리 앨범 · 글래스모피즘)
+   ===================================================================== */
+:root {
+  --ink: #2E2550;          /* 글씨 */
+  --ink-soft: #5E5480;     /* 보조 글씨 */
+  --violet: #8B6FD6;
+  --violet-deep: #5B3FB0;
+  --pink: #F08A9B;
+  --coral: #E85C7A;
+  --amber: #F5B841;
+  --mint: #5CC7A8;
+  --sky: #6FB6F0;
+  --green: #2FA37D;
+  --glass: rgba(255, 255, 255, 0.42);
+  --glass-line: rgba(255, 255, 255, 0.8);
+  --radius: 28px;
+  --font-ko: 'Jua', 'Fredoka', system-ui, sans-serif;
+  --font-en: 'Fredoka', 'Jua', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: var(--font-ko);
+  color: var(--ink);
+  background-color: #EEE7F7;
+  background-image:
+    radial-gradient(circle at 8% 12%, #F9CBD0 0, rgba(249,203,208,0) 30%),
+    radial-gradient(circle at 88% 8%, #FFDB8E 0, rgba(255,219,142,0) 28%),
+    radial-gradient(circle at 78% 92%, #C9B6EC 0, rgba(201,182,236,0) 34%),
+    radial-gradient(circle at 18% 95%, #BFE4F2 0, rgba(191,228,242,0) 30%),
+    radial-gradient(circle at 50% 50%, #FFF5E1 0, rgba(255,245,225,0) 45%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+body.golden {
+  background-color: #FFF3DA;
+  background-image:
+    radial-gradient(circle at 50% 40%, #FFE7A8 0, rgba(255,231,168,0) 50%),
+    radial-gradient(circle at 8% 12%, #F9CBD0 0, rgba(249,203,208,0) 30%),
+    radial-gradient(circle at 88% 8%, #FFDB8E 0, rgba(255,219,142,0) 34%),
+    radial-gradient(circle at 18% 95%, #BFE4F2 0, rgba(191,228,242,0) 30%);
+}
+.en { font-family: var(--font-en); }
+.muted { color: var(--ink-soft); }
+.hidden { display: none !important; }
+h1, h2, h3 { font-weight: 400; margin: 0; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* ---------- 유리 카드 ---------- */
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1.5px solid var(--glass-line);
+  box-shadow: 0 12px 40px rgba(70, 50, 130, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: rgba(255, 255, 255, 0.9); }
+}
+
+/* ---------- 젤리 버튼 ---------- */
+.jelly {
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-ko);
+  color: var(--ink);
+  border-radius: 22px;
+  box-shadow: 0 6px 0 rgba(46, 37, 80, 0.18), inset 0 2px 0 rgba(255, 255, 255, 0.7), 0 10px 22px rgba(46, 37, 80, 0.12);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.2s;
+}
+.jelly:active:not(:disabled) { transform: translateY(5px); box-shadow: 0 1px 0 rgba(46, 37, 80, 0.18), inset 0 2px 0 rgba(255, 255, 255, 0.7); }
+.jelly:disabled { cursor: default; filter: saturate(0.4) opacity(0.6); }
+.jelly:focus-visible, .chip:focus-visible, .avatar-pick:focus-visible, input:focus-visible { outline: 3px solid var(--violet-deep); outline-offset: 3px; }
+.btn-violet { background: linear-gradient(180deg, #A98FEA, #6A4BC8); color: #fff; }
+.btn-amber  { background: linear-gradient(180deg, #FFE7A8, #F5B841); color: #4A3300; }
+.btn-pink   { background: linear-gradient(180deg, #FF9AAE, #E85C7A); color: #fff; }
+.btn-white  { background: linear-gradient(180deg, #FFFFFF, #E4DCF3); }
+.opt-1 { background: linear-gradient(180deg, #D9CCF6, #A98FEA); }
+.opt-2 { background: linear-gradient(180deg, #FFE0E5, #F5A3B3); }
+.opt-3 { background: linear-gradient(180deg, #FFF0C7, #F7C95E); }
+.opt-4 { background: linear-gradient(180deg, #D4F2E7, #84D6BC); }
+.jelly.is-correct { background: linear-gradient(180deg, #A8F0D6, #2FA37D); color: #fff; }
+.jelly.is-wrong   { background: linear-gradient(180deg, #FFC2CD, #E85C7A); color: #fff; }
+
+/* ---------- 칩, 입력 ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 16px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  font-size: 18px; color: var(--ink);
+  font-family: var(--font-en); font-weight: 600;
+}
+button.chip { cursor: pointer; }
+.chip.on { background: linear-gradient(180deg, #D9CCF6, #A98FEA); border-color: #fff; color: var(--ink); }
+.chip img { width: 34px; height: 23px; object-fit: contain; }
+.pill { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 999px; font-size: 18px; }
+input.field {
+  width: 100%; height: 60px; padding: 0 18px;
+  border-radius: 18px; border: 1.5px solid rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-ko); font-size: 24px; color: var(--ink);
+}
+
+/* ---------- 아바타 ---------- */
+.avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 24px; line-height: 1;
+  border: 2.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 10px rgba(46, 37, 80, 0.16);
+  flex-shrink: 0;
+}
+
+/* ---------- 움직임 ---------- */
+@keyframes pop { 0% { transform: scale(0.6); opacity: 0; } 60% { transform: scale(1.12); opacity: 1; } 100% { transform: scale(1); } }
+@keyframes floatUp { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-60px); opacity: 0; } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(245, 184, 65, 0.6); } 50% { box-shadow: 0 0 0 10px rgba(245, 184, 65, 0); } }
+.pop { animation: pop 0.45s ease-out both; }
+.shake { animation: shake 0.35s ease-in-out 2; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- 알림 ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+  padding: 14px 22px; border-radius: 18px; font-size: 18px; z-index: 50;
+  background: rgba(46, 37, 80, 0.92); color: #fff; max-width: calc(100% - 32px);
+}
+.conn {
+  position: fixed; right: 14px; bottom: 12px; z-index: 40;
+  font-size: 14px; padding: 6px 12px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7); color: var(--ink-soft);
+}
+.conn::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: var(--mint); vertical-align: middle; }
+.conn.poll::before { background: var(--amber); }
